@@ -42,7 +42,7 @@ messages_en = {
 # Variável de idioma
 current_language = 'pt'  # 'pt' ou 'en'
 
-# Configuração do Selenium com Edge - otimizado
+# Configuração do Selenium com Edge
 def setup_driver():
     edge_options = Options()
     edge_options.add_argument("--headless")
@@ -62,7 +62,7 @@ def setup_driver():
     service = Service("./msedgedriver.exe")
     return webdriver.Edge(service=service, options=edge_options)
 
-# Função melhorada para esperar carregar a página
+
 def wait_for_page_load(driver, timeout=10):
     """Espera inteligente até que a página esteja carregada completamente."""
     try:
@@ -110,7 +110,7 @@ def fetch_page_source(url):
         driver.quit() if 'driver' in locals() else None
         return ""
 
-# Enviar mensagem de boas-vindas com botões - não modificado
+# Enviar mensagem de boas-vindas com botões
 def send_welcome(message):
     text = messages_pt['welcome'] if current_language == 'pt' else messages_en['welcome']
     bot.send_message(message.chat.id, text)
@@ -162,7 +162,7 @@ def send_welcome(message):
     choose = messages_pt['choose_option'] if current_language == 'pt' else messages_en['choose_option']
     bot.send_message(message.chat.id, choose, reply_markup=markup)
 
-# Comandos básicos - não modificados
+# Comandos básicos
 @bot.message_handler(commands=['start', 'help'])
 def start(message):
     send_welcome(message)
@@ -226,7 +226,7 @@ def callback_query(call):
         bot.answer_callback_query(call.id, "Idioma alterado para Português!")
         send_welcome(call.message)
 
-# Função otimizada com cache
+
 @cached(cache=results_cache)
 def send_last_results(chat_id):
     """Busca e envia os últimos resultados com cache."""
@@ -290,7 +290,6 @@ def send_last_results(chat_id):
         bot.send_message(chat_id, "Erro ao buscar resultados." if current_language == 'pt' else "Error fetching results.")
         print(f"Erro: {e}")
 
-# Função otimizada com cache
 @cached(cache=roster_cache)
 def send_roster(chat_id):
     """Busca e envia o elenco atual com cache."""
@@ -322,7 +321,6 @@ def send_roster(chat_id):
         bot.send_message(chat_id, "Erro ao buscar elenco." if current_language == 'pt' else "Error fetching roster.")
         print(f"Erro: {e}")
 
-# Função otimizada com cache
 @cached(cache=upcoming_cache)
 def send_upcoming_matches(chat_id):
     """Busca e envia as próximas partidas com cache."""
@@ -381,8 +379,8 @@ def send_upcoming_matches(chat_id):
         bot.send_message(chat_id, "Erro ao buscar partidas." if current_language == 'pt' else "Error fetching matches.")
         print(f"Erro: {e}")
 
-# Função otimizada com cache
-@cached(cache=TTLCache(maxsize=10, ttl=3600))  # 1 hora de cache
+
+@cached(cache=TTLCache(maxsize=10, ttl=259200))  # 3 dias de cache (259200 segundos)
 def send_titles(chat_id):
     """Busca e envia os títulos com cache."""
     try:
@@ -422,7 +420,6 @@ def send_titles(chat_id):
         bot.send_message(chat_id, "Erro ao buscar títulos." if current_language == 'pt' else "Error fetching titles.")
         print(f"Erro: {e}")
 
-# Função otimizada com cache
 @cached(cache=TTLCache(maxsize=10, ttl=1800))  # 30 minutos de cache
 def send_stats(chat_id):
     """Busca e envia as estatísticas com cache."""
@@ -464,7 +461,6 @@ def send_stats(chat_id):
         bot.send_message(chat_id, "Erro ao buscar estatísticas." if current_language == 'pt' else "Error fetching stats.")
         print(f"Erro: {e}")
 
-# Função otimizada com cache
 @cached(cache=TTLCache(maxsize=10, ttl=3600))  # 1 hora de cache
 def send_news(chat_id):
     """Busca e envia as notícias com cache."""
@@ -508,7 +504,6 @@ def send_news(chat_id):
         bot.send_message(chat_id, "Erro ao buscar notícias." if current_language == 'pt' else "Error fetching news.")
         print(f"Erro: {e}")
 
-# Função otimizada com cache
 @cached(cache=TTLCache(maxsize=10, ttl=3600))  # 1 hora de cache
 def send_ranking(chat_id):
     """Busca e envia o ranking com cache."""
@@ -547,8 +542,7 @@ def send_ranking(chat_id):
         bot.send_message(chat_id, "Erro ao buscar ranking." if current_language == 'pt' else "Error fetching ranking.")
         print(f"Erro: {e}")
 
-# Função otimizada com cache
-@cached(cache=TTLCache(maxsize=10, ttl=3600))  # 1 hora de cache
+@cached(cache=TTLCache(maxsize=10, ttl=259200))  # 3 dias de cache (259200 segundos)
 def send_camps(chat_id):
     """Busca e envia os campeonatos e colocações com cache."""
     try:
@@ -586,7 +580,6 @@ def send_camps(chat_id):
         bot.send_message(chat_id, "Erro ao buscar campeonatos." if current_language == 'pt' else "Error fetching events.")
         print(f"Erro: {e}")
 
-# Função otimizada - sem necessidade de cache pois é estática
 def send_social_links(chat_id):
     """Envia links para redes sociais."""
     try:
