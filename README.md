@@ -1,7 +1,7 @@
 # FURIA-BOT (@CSFuriosoBot)
 
 <div align="center">
-  <img src="https://github.com/FURIA.png" width="200" alt="FURIA Logo">
+  <img src="https://yt3.googleusercontent.com/_QDHD8FYiV_Xhk4pdtzme9OOtbg6LMCOcSz3-Sv0AVUbSccWbtQJlIbk2sIEiBbQsIgwn64onQ=s900-c-k-c0x00ffffff-no-rj" width="200" alt="FURIA Logo">
   <br>
   <h3>Bot Telegram para fãs da FURIA CS</h3>
 </div>
@@ -98,5 +98,5 @@ by: Eu, Amanda... curte ai...
 ---
 
 <div align="center">
-  <p>🎮 FURIA É NOSSO TIME 🎮</p>
+  <p>🎮 BOT DA FURIA PARA FURIOSOS 🎮</p>
 </div>
